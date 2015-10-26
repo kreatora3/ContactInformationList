@@ -1,0 +1,66 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+    <script src="~/Scripts/CustomScripts/Controllers.js"></script>
+    <style>
+        img {
+            max-height: 65px;
+        }
+        h2{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-header">
+        <h2>Contact Information</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Photo</th>
+                        <th>Name</th>
+                        <th>Telephone</th>
+                        <th>Gender</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="contactList">
+                    <tr></tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <script>
+        $(document).on("click", ".delete-button", function () {
+            alert("Entering ...")
+            var idString = $(this).attr("id")
+            var ids = parseInt(idString.substring(1))
+            alert("ContactInfo id is " + ids)
+            $.ajax({
+                url: "http://localhost:24478/api/ContactInfo",
+                type: "Post",
+                data: ids,
+                success: function (data) {
+                    alert("Fail :(")
+                },
+                error: function (msg) { alert("Post action Failed :("); }
+            });
+        });
+    </script>
+</body>
+</html>
