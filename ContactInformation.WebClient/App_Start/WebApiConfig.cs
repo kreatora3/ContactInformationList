@@ -9,7 +9,7 @@
         public static void Register(HttpConfiguration config)
         {
             config.MapHttpAttributeRoutes();
-            config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
+           // config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
 
             config.Routes.MapHttpRoute(
                name: "Delete",

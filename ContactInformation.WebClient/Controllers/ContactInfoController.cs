@@ -11,8 +11,8 @@
     using ContactInformation.Data;
     using ContactInformation.Models;
     using System.Web.Http.Cors;
-   
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+
+    //[EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ContactInfoController : ApiController
     {
         private IContactData data;
@@ -25,22 +25,45 @@
         {
             this.data = data;
         }
-       
+
         [HttpGet]
         public IEnumerable<ContactInfo> Get()
         {
-            var result = data.Contacts.GetAll()
+            var result = this.data.Contacts.GetAll()
                .Where(c => c.Status != UserStatus.Deleted);
-            return result;           
+            return result;
         }
 
         [HttpPost]
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
-        public IHttpActionResult Delete(string idString)
+        //[EnableCors(origins: "*", headers: "*", methods: "*")]
+        public IHttpActionResult Delete(ContactInfo contact)
         {
-            var id = int.Parse(idString);
-            data.Contacts.Delete(id);
-            data.Contacts.SaveChanges();
+            var id = contact.Id;
+
+            this.data.Contacts.Delete(id);
+            this.data.Contacts.SaveChanges();
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("api/changeStatus")]
+        public IHttpActionResult ChangeStatus(ContactInfo contact)
+        {
+            var id = contact.Id;
+            var databaseContact = this.data.Contacts.GetById(id);
+
+            if (databaseContact.Status != UserStatus.Active)
+            {
+                databaseContact.Status = UserStatus.Active;
+            }
+            else
+            {
+                databaseContact.Status = UserStatus.Inactive;
+            }
+
+            this.data.Contacts.Update(databaseContact);
+            this.data.Contacts.SaveChanges();
+            
             return Ok();
         }
     }

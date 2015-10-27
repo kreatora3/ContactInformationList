@@ -46,17 +46,40 @@
         </div>
     </div>
     <script>
-        $(document).on("click", ".delete-button", function () {
-            alert("Entering ...")
-            var idString = $(this).attr("id")
-            var ids = parseInt(idString.substring(1))
-            alert("ContactInfo id is " + ids)
+        $(document).on("click", ".delete-button", function () {            
+           var idString = $(this).attr("id")
+           var idInt = parseInt(idString.substring(1))
+           var contact = new Object();
+           contact.id = idInt;           
             $.ajax({
                 url: "http://localhost:24478/api/ContactInfo",
                 type: "Post",
-                data: ids,
+                data: contact,
                 success: function (data) {
-                    alert("Fail :(")
+                    var trId = idString.replace("d", "t")
+                   $("#" + trId).fadeOut("slow")
+                },
+                error: function (msg) { alert("Post action Failed :("); }
+            });
+        });
+
+        $(document).on("click", ".status-button", function () {
+            var idString = $(this).attr("id")           
+            var status = $(this).attr("value")           
+            var idInt = parseInt(idString.substring(1))
+
+            var contact = new Object();
+            contact.id = idInt;            
+            $.ajax({
+                url: "http://localhost:24478/api/changeStatus",
+                type: "Post",
+                data: contact,
+                success: function (data) {
+                    if (status != "Active") {
+                        $("#" + idString).attr("value","Active")
+                    } else {
+                        $("#" + idString).attr("value", "Inactive")
+                    }
                 },
                 error: function (msg) { alert("Post action Failed :("); }
             });

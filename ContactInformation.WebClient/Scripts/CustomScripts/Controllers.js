@@ -24,7 +24,7 @@ $(document).ready(function () {
                 var statusButton = $("<input/>").attr({
                     "value" : statusList[data[i].Status],
                     "type": "submit",
-                    "class": "btn btn-sm btn-primary",
+                    "class": "btn btn-sm btn-primary status-button",
                     "id" : "s" + data[i].Id
                 })
                 var statusButtonContainer = $("<td></td>")
