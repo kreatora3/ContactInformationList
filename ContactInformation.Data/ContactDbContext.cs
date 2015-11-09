@@ -11,6 +11,7 @@
         {
              Database.SetInitializer(new MigrateDatabaseToLatestVersion<ContactDbContext, Configuration>());
         }
+       
 
         public IDbSet<ContactInfo> Contacts { get; set; }
 
