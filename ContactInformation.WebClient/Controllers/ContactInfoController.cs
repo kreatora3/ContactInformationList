@@ -19,6 +19,7 @@
 
         public ContactInfoController()
         {
+
         }
 
         public ContactInfoController(IContactData data)
