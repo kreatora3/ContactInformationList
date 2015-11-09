@@ -7,7 +7,7 @@
     public class ContactDbContext : DbContext
     {
         public ContactDbContext() :
-            base("ContactInfoConnection")
+            base("testname")
         {
              Database.SetInitializer(new MigrateDatabaseToLatestVersion<ContactDbContext, Configuration>());
         }
