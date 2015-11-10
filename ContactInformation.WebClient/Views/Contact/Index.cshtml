@@ -52,7 +52,8 @@
            var contact = new Object();
            contact.id = idInt;           
             $.ajax({
-                url: "http://localhost:24478/api/ContactInfo",
+                // url: "http://localhost:24478/api/ContactInfo",
+                url: "http://testconact.apphb.com/api/ContactInfo",
                 type: "Post",
                 data: contact,
                 success: function (data) {
@@ -71,7 +72,8 @@
             var contact = new Object();
             contact.id = idInt;            
             $.ajax({
-                url: "http://localhost:24478/api/changeStatus",
+                //url: "http://localhost:24478/api/changeStatus",
+                url: "http://testconact.apphb.com/api/changeStatus",
                 type: "Post",
                 data: contact,
                 success: function (data) {

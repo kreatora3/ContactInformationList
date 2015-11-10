@@ -1,8 +1,8 @@
 ﻿/// <reference path="../jquery-2.1.4.intellisense.js" />
 $(document).ready(function () {    
     $.ajax({
-        url: "http://localhost:24478/api/ContactInfo",
-        //url: "http://testconact.apphb.com/api/ContactInfo",
+        //url: "http://localhost:24478/api/ContactInfo",
+        url: "http://testconact.apphb.com/api/ContactInfo",
         type: "Get",
         success: function (data) {
             var genders = ["Male", "Female", "Other"]
