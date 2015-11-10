@@ -1,7 +1,8 @@
 ﻿/// <reference path="../jquery-2.1.4.intellisense.js" />
 $(document).ready(function () {    
     $.ajax({
-        url: "http://localhost:24478/api/ContactInfo",
+        //url: "http://localhost:24478/api/ContactInfo",
+       url: "sqlserver://gdjgffdrgzepgjcm:tdJF53vqaNfdov7cWDNrhwLPxzudYdhhnSSCad4uTeoEgeB27gWSQVv6z3hCGsz5@f06cdc4c-8855-4c39-a119-a54b017680d9.sqlserver.sequelizer.com/dbf06cdc4c88554c39a119a54b017680d9",
         type: "Get",
         success: function (data) {
             var genders = ["Male", "Female", "Other"]
